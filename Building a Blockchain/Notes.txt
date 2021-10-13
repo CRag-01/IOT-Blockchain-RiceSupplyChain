@@ -1,5 +1,4 @@
-
-
+SAMPLE BLOCK - 
 block = {
     'index': 1,
     'timestamp': 1506057125.900785,
