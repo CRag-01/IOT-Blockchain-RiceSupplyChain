@@ -1,0 +1,89 @@
+
+
+block = {
+    'index': 1,
+    'timestamp': 1506057125.900785,
+    'transactions': [
+        {
+            'sender': "8527147fe1f5426f9dd545de4b27ee00",
+            'recipient': "a77f5cdfa2934df3954a5c7c7da5df1f",
+            'amount': 5,
+        }
+    ],
+    'proof': 324984774000,
+    'previous_hash': "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+}
+
+-Each Block is a dictionary
+	-index
+	-timestamp - Unix Time
+	-Transaction - List of Dict
+	-proof
+	-previous_hash
+
+Hash of the previous block is important as it gives the block its immutability - If an attacker corrupts an earlier
+                                                                                block in the chain all subsequent block
+                                                                                will contain incorrect hashes.
+
+Creating new blocks - Blockchain instantiated with a Genesis Block - a block with no predecessors.
+
+
+Proof-of-Work
+
+    A Proof of work algorithm is how new blocks are created or mined on the blockchain. The goal of PoW is to discover
+    a number which solves a problem. The number is difficult to find but easy to verify - computationally speaking -
+    by anyone on the network. This is the core idea behind the proof of network
+
+    Let's say -
+    We've decided that the hash of some integer x multiplied by another integer y must end in 0.
+    hash(x*y)  = asdaw3234...0
+
+    ```
+    from hashlib import sha256
+    x = 5
+    y = 0 # Have to find out
+    while sha256(f'{x*y}'.encode()).hexdigest()[-1]!="0":
+        y += 1
+    print(f'The solution is y - {y}')
+
+    ```
+
+   PoW for BitCoin - Hashcash
+    Algorithm that miners race to solve in order to create a new block. In general, difficulty is determined by the
+    number of characters searched in the string. Miners are then rewarded for their solution by receiving a coin - in a
+    transaction.
+    The netowork would be able to easily verify the solution.
+
+
+
+SERVER - FLASK
+    - Transactions Endpoint : transactions/new POST
+        Creates a new transaction and adds it to a block AFTER VERIFYING whether all the required fields are present in
+        the incoming data
+
+    - Mining Endpoint : /mine GET
+        - Calculate Proof of Work
+        - Reward the miner by adding a transaction granting us 1 coin
+        - Forge the new Block by adding it to the chain
+
+
+CONSENSUS ALGORITHM - DECENTRALISATION
+    Whole point of blockchain is decentralisation. How do we reflect that they're all reflecting the same chain? This is
+    called the problem of consensus. we need a consensus algorithm if we want more than one node in our network.
+
+    We need a node to know about the neighbouring nodes on the network. Each node on our network should keep a registry
+    of other nodes on the network. So more endpoints required -
+
+        - /nodes/register to accept a list of new nodes in the form of URLs
+        - /nodes/resolve to implement our Consensus Algorithm, which resolves any conflicts - to ensure a node has the
+          correct chain
+
+    Consensus
+        Conflict is when a node has a different chain to another node. To resolve this, we'll make the rule that the
+        longest valid chain is authoritative. Longest chain on the network is the de-facto one. Using the consensus
+        algorithm we reach the consensus amongst the nodes in out network.
+
+
+
+
+
