@@ -3,7 +3,7 @@
 Project Under Development
 
 ### Folder: Building a BlockChain
-Basic blockchain structure using Python to give us a unserstanding about - 
+Basic blockchain structure using Python to give us an understanding about - 
   - Mining
   - Transactions
   - Proof of Work
