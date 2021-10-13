@@ -2,7 +2,7 @@
 
 Project Under Development
 
-#### Folder: Building a BlockChain
+### Folder: [a link] https://github.com/CRag-01/IOT-Blockchain-RiceSupplyChain/tree/main/Building%20a%20Blockchain
 Basic blockchain structure using Python to give us a unserstanding about - 
   - Mining
   - Transactions
