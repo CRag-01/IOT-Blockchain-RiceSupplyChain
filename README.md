@@ -8,3 +8,4 @@ Basic blockchain structure using Python to give us an understanding about -
   - Transactions
   - Proof of Work
   - Consensus
+ Authentication module - Twilio API used for Mobile Number verification.
