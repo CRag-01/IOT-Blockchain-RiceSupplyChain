@@ -2,6 +2,8 @@
 from uuid import uuid4
 from flask import Flask, jsonify, request
 
+from Authentication import Auth_Twilio
+
 import blockchain
 
 # Instantiate our node
@@ -72,6 +74,15 @@ def full_chain():
 def register_nodes():
     values = request.get_json(force=True)
     nodes = values.get('nodes')
+    phone_num = values.get('phone')
+    authentication_message = Auth_Twilio.phone_authentication(phone_num)
+    append_message = ""
+
+    if authentication_message == 'approved':
+        append_message = "Phone verification successful"
+    else:
+        append_message = "Phone verification unsucessful"
+
     if nodes is None:
         return "Error: Please supply a valid list of nodes.", 400
 
@@ -81,6 +92,7 @@ def register_nodes():
     response = {
         'message': 'New nodes have been added',
         'total_nodes': list(bc.nodes),
+        'authentication_status': append_message
     }
 
     return jsonify(response), 201
