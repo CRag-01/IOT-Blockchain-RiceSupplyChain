@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain User Frontend</title>
+
+    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/vendor/DataTables/css/datatables.min.css">
+    <link rel="stylesheet" href="/static/vendor/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a href="#" class="navbar-brand">Blockchain User Frontend (Python)</a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Wallet Generator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/make/transaction" class="nav-link">Make Transaction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/view/transactions" class="nav-link">View Transactions</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/view/balance" class="nav-link">Balance & ATM</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Balance -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+
+          <div class="card-body">
+            <h4 class="card-title">Balance & Exchange Rates</h4>
+            <p class="card-text">Enter your public key and double click on "Check Balance & Rates" button for your coin balance and exchange rates in EURO and PLN</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+        <div class="container alert alert-secondary">
+        <form id="balance_form">
+            <div class="row">
+                <label class="col-sm-2">Your Public Key:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="your_public_key1" id="your_public_key1" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <input type="button" name="check_balance" id="check_balance" class="btn btn-primary btn-lg" value="Check Balance & Rates">
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+    <br>
+
+    <!-- List of nodes -->
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-12" id="list_rates1">
+
+        </div>
+
+        <div class="col-lg-12" id="list_rates2">
+
+        </div>
+
+        <div class="col-lg-12" id="list_rates3">
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Withdrawal -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="card-body">
+                    <h4 class="card-title">Withdraw in ATM</h4>
+                    <p class="card-text">Enter withdrawal details and click on "Withdraw" button to receive amount in desired currency</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container alert alert-secondary">
+        <form id="transaction_form">
+            <div class="row">
+                <label class="col-sm-2">Your Public Key:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="your_public_key" id="your_public_key" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <label class="col-sm-2">Your Private Key:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="your_private_key" id="your_private_key" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <label class="col-sm-2">Amount of coin:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="amount_withdraw" id="amount_withdraw" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <label class="col-sm-2">Currency shortcut:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="currency_withdraw" id="currency_withdraw" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <input type="button" name="generate_withdrawal" id="generate_withdrawal" class="btn btn-primary btn-lg" value="Generate Transaction">
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Alert Message for successful transaction -->
+    <div class="modal modal-alert fade" id="success_transaction_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+
+          <div class="modal-body">
+            <div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">Successful Withdrawal!</h4>
+              <p>You successfully completed your withdrawal. Pick up money and the receipt.</p>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" id="confirm_transaction" class="btn btn-success" data-dismiss="modal">OK</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+      <!-- Alert Message for failed transaction -->
+    <div class="modal modal-alert fade" id="failed_transaction_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+
+          <div class="modal-body">
+            <div class="alert alert-warning" role="alert">
+              <h4 class="alert-heading">Withdrawal Failed!</h4>
+              <p>Insufficient amount or wrong credentials. Please try again.</p>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" id="confirm_transaction" class="btn btn-success" data-dismiss="modal">OK</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/DataTables/js/datatables.min.js"></script>
+    <script src="/static/vendor/DataTables/js/ellipsis.js"></script>
+
+    <script>
+        $(function() {
+
+            $('#check_balance').click(function() {
+                $.ajax({
+                    url: '/wallet/rates',
+                    type: 'GET',
+                    success: function(response) {
+                        document.getElementById('list_rates1').innerHTML = 'Amount of coins: ' + response['coin_amount'];
+                        document.getElementById('list_rates2').innerHTML = 'Value in EUR: ' + response['amount_in_eur'];
+                        document.getElementById('list_rates3').innerHTML = 'Value in PLN: ' + response['amount_in_pln'];
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            $('#check_balance').click(function() {
+                $.ajax({
+                    url: '/wallet/balance',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: $('#balance_form').serialize(),
+                    success: function(response) {
+                        document.getElementById('your_private_key1').value = '';
+                        window.location.reload();
+                    },
+
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+
+            $("#generate_withdrawal").click(function() {
+                $.ajax({
+                    url: "/generate/withdrawal",
+                    type: "POST",
+                    dataType: 'json',
+                    data: $('#transaction_form').serialize(),
+                    success: function(response) {
+                        document.getElementById('your_public_key').value = response['your_public_key'];
+                        document.getElementById('your_private_key').value = response['your_public_key'];
+                        document.getElementById('amount_withdraw').value = response['amount'];
+                        document.getElementById('currency_withdraw').value = response['currency'];
+
+                        $('#success_transaction_modal').modal('show');
+                    },
+                    error: function(error) {
+                        console.log(error);
+
+                        $('#failed_transaction_modal').modal('show');
+
+                    }
+                });
+            });
+        });
+
+    </script>
+
+</body>
+</html>
