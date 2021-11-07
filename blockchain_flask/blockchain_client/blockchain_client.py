@@ -123,6 +123,9 @@ def generate_withdrawal():
     else:
         return 'Insufficient amount', 400
 
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
 @app.route('/make/transaction')
 def make_transaction():
