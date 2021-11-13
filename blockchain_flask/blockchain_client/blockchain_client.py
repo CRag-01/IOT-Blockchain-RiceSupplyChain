@@ -114,6 +114,10 @@ def generate_withdrawal():
 def home():
     return render_template('home.html')
 
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
 @app.route('/details')
 def details():
     return render_template('details.html')
