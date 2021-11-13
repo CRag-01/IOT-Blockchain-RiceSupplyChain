@@ -1,21 +1,4 @@
-"""
-title           : blockchain_client.py
-description     : A blockchain user backend implementation in Python that provides following features:
-                  - wallet generator using public/private key encryption (based on RSA algorithm)
-                  - making transaction with RSA encryption
-                  - viewing transactions made
-                  - exchanging coins for FIAT currency (e.g. EURO) in cryptoATM
-author          : Roger Burek-Bors with instruction from Dr Zakwan Jaroucheh, the lecturer of <<Build a Blockchain &
-                  Cryptocurrency using Python>> on Udemy
-date_created    : 2020-12-22
-version         : 0.2
-usage           : The script runs locally therefore to simulate various nodes it needs a specified port to listen to.
-                  You can run following instances:
-                  - python blockchain_client.py
-                  - python blockchain_client.py -p 8080
-                  - python blockchain_client.py --port 8080
-python_version  : 3.7
-"""
+
 
 import binascii
 import Crypto
@@ -82,10 +65,12 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/')
-def index():
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
+@app.route('/wallet')
+def wallet():
     return render_template('index.html')
-
 
 @app.route('/generate/transaction', methods=['POST'])
 def generate_transaction():
@@ -123,9 +108,15 @@ def generate_withdrawal():
     else:
         return 'Insufficient amount', 400
 
-@app.route('/home')
+
+
+@app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route('/details')
+def details():
+    return render_template('details.html')
 
 @app.route('/make/transaction')
 def make_transaction():

@@ -1,12 +1,12 @@
 from twilio.rest import Client
 
-account_sid = 'AC86da6cae659fd28ca8e22f2eca3fb25d'
+account_sid = 'Enter account sid'
 auth_token = 'YOUR-AUTH-TOKEN-HERE'
 client = Client(account_sid, auth_token)
 
 def phone_authentication(phone_num):
     verification = client.verify \
-                        .services('VAcfef5a1a850770131e72997309729345') \
+                        .services('Enter service id') \
                         .verifications \
                         .create(to=phone_num, channel='sms')
     print(verification.status)
@@ -17,7 +17,7 @@ def verify_OTP(phone_num):
     client = Client(account_sid, auth_token)
     recv_code = input("Enter the OTP: ")
     verification_check = client.verify \
-                            .services('VAcfef5a1a850770131e72997309729345') \
+                            .services('Enter service id') \
                             .verification_checks \
                             .create(to=phone_num, code = recv_code)
     return verification_check.status
