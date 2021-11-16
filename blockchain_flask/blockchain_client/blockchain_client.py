@@ -2,8 +2,11 @@ import binascii
 import Crypto
 import Crypto.Random
 import json
+import os
 import requests
 import urllib.request
+from dotenv.main import load_dotenv
+from twilio.rest import Client
 from datetime import date, timedelta
 from flask import Flask, request, jsonify, render_template, redirect
 from flask_cors import CORS
@@ -13,6 +16,16 @@ from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
 
 
+#twilio configs
+load_dotenv()
+
+account_sid = os.getenv("account_sid")
+auth_token = os.getenv("auth_token")
+service = os.getenv("service")
+
+client = Client(account_sid, auth_token)
+
+#Ledger Configs
 class Ledger:
 
     def __init__(self):
@@ -77,23 +90,19 @@ def submit():
     aadhaar_no = request.form['aad_no']
     email = request.form['email']
     phone =request.form['phone_no']
+    verification = client.verify \
+                     .services(service) \
+                     .verifications \
+                     .create(to=phone, channel='sms')
+    print(verification.status)
     print(name,kishan_id,aadhaar_no,email,phone)
     response = {'email': email,
-                'phone': phone}
+                'phone': phone,
+                'status':verification.status}
     # return redirect(request.referrer)
     # return render_template('signup2.ejs')
     return response, 200
-    # return  render_template('signup2.ejs'),200;
-    # return 200
-	# if request.method == "POST":
-	# 	if request.form.get("submit_a"):
-	# 		print("Hello")
-		# elif request.form.get("submit_b"):
-			# do something else
-    #    # getting input with name = fname in HTML form
-    #    id = request.form.get("id_no")
-    #    # getting input with name = lname in HTML form 
-    #    last_name = request.form.get("lname") 
+    
 
 @app.route('/generate/transaction', methods=['POST'])
 def generate_transaction():
