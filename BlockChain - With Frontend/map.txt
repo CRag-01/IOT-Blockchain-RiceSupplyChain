@@ -1,0 +1,14 @@
+name
+city
+no of acres
+kishanid. 
+aadhar card  ------> proceed   phone_num 
+			       email   -------> verify (new page) email otp and phone otp ------> if verified----> wallet page ----- public key ----> 
+																     private key 
+
+			{publickey --->list
+						}
+
+
+
+}        

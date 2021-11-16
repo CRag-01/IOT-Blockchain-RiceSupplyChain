@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain - Identity Module</title>
+
+    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/vendor/DataTables/css/datatables.min.css">
+    <link rel="stylesheet" href="/static/vendor/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+    
+</head>
+<body>
+
+    <nav class = "navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class = "container">
+            <a href="#" class="navbar-brand">   Supply Chain Authorisation Module - Client Side</a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a href = "/" class="nav-link">Key Generator</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href = "/make/transaction" class="nav-link">Make Transaction</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href = "/view/transactions" class="nav-link">View Transacrions</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="card-body">
+                    <h4 class="card-title">Key Generator</h4>
+                    <p class="cardtext"> Click on the button below to generate your public and private keys.</p>
+                    <input type="button" class="btn btn-primary btn-lg" value="Generate Keys">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <label class="col-sm-2">Public Key:</label>
+            <div class="col-sm-10">
+                <textarea id="public_key" rows="5" class="form-control" readonly></textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <label class="col-sm-2">Private Key:</label>
+            <div class="col-sm-10">
+                <textarea id="private_key" rows="5" class="form-control" readonly></textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row" id="warning" style="display:none">
+            <div class="col-sm-12">
+              <div class="alert alert-danger" role="alert">
+                IMPORTANT
+                <ul>
+                  <li>Save you private and public keys. These keys cannot be recovered!</li>
+                  <li>Don't share your private key with anyone!</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <script> src = "/static/vendor/jquery/jquery.min.js" </script>
+    <script> src = "/static/vendor/bootstrap/js/bootstrap.bundle.min.js" </script>
+    <script> src = "/static/vendor/DataTables/js/datatables.min.js" </script>
+    <script> src = "/static/vendor/DataTables/js/ellipsis.js" </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     
+    <script>
+       $(function() {
+            $('input').click(function() {
+
+                $.ajax({
+                    url: '/wallet/new',
+                    type: 'GET',
+                    success: function(response) {
+                        document.getElementById("warning").style.display = "block";
+                        document.getElementById("public_key").innerHTML = response['public_key'];
+                        document.getElementById("private_key").innerHTML = response['private_key'];
+                        
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
