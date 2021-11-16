@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/style3.css">
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1092758.jpg");
+        }
+    </style>
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <!-- <p class="tip">Welcome to Rice Chain!</p> -->
+    <p class="tip"></p>
+    <br>
+    <div class="cont">
+        <div class="form sign-in">
+            <!-- <h3>Give us your details: </h3> -->
+            <form id="submit_form">
+
+
+                <label>
+                    <span>Name</span>
+                    <input type="text" name="name" id="name" />
+                </label>
+                <label>
+                    <span>Kishan ID Number</span>
+                    <input type="text" name="kishan_id" id="kishan_id" />
+                </label>
+                <label>
+                    <span>Aadhar Card Number</span>
+                    <input type="text" name="aad_no" id="aad_no" />
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email" name="email" id="email" />
+                </label>
+                <label>
+                    <span>Phone Number</span>
+                    <input type="text" name="phone_no" id="phone_no" />
+                </label>
+                <button type="button" class="submit-xD" value="submit_a">Sign Up</button>
+            </form>
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+                    <h2><b>PRODUCER</b></h2>
+                    <p>To register as producer in the rice supply chain, please provide the necessary details and click
+                        on "Proceed"</p>
+                </div>
+                <div class="img__text m--in">
+                    <h2><b>Verification</b></h2>
+                    <p>Enter the OTPs received on your phone number and email id to authenticate.</p>
+                </div>
+                <div class="img__btn">
+                    <span class="m--up">Proceed</span>
+                    <span class="m--in">Edit Detials</span>
+                </div>
+            </div>
+            <div class="form sign-up">
+                <h2>Enter your OTPs: </h2>
+                <form id="signup_form">
+                <label>
+                    <span>Phone Number OTP</span>
+                    <input type="text" name="phone_no2" id="phone_no2" />
+                </label>
+                <label>
+                    <span>Email OTP</span>
+                    <input type="email" name="email_id2" id="email_id2" />
+                </label>
+                <button type="button" class="submit" name="verify_btn" id="verify_btn">Verify</button>
+            </form> 
+            </div>
+        </div>
+    </div>
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/DataTables/js/datatables.min.js"></script>
+    <script src="/static/vendor/DataTables/js/ellipsis.js"></script>
+    <script>
+        // var a=1;
+        $(function () {
+            $("#submit_form").click(function () {
+                $.ajax({
+                    url: "/signup",
+                    type: "POST",
+                    dataType: 'json',
+                    data: $('#submit_form').serialize(),
+                    success: function (response) {
+                        // document.getElementById('name').value = response['name'];
+                        // document.getElementById('kishan_id').value = response['kishan_id'];
+                        // document.getElementById('aad_no').value = response['aad_no'];
+                        // document.getElementById('email').value = response['email'];
+                        // document.getElementById('phone_no').value = response['phone_no'];
+                        console.log("Noice")
+                        // $('#basic_modal').modal('show');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+                
+            });
+        });
+    </script>
+    <script src="/static/js/script2.js"></script>
+
+</body>
+
+</html>

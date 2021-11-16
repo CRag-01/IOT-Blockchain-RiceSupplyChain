@@ -1,5 +1,3 @@
-
-
 import binascii
 import Crypto
 import Crypto.Random
@@ -7,7 +5,7 @@ import json
 import requests
 import urllib.request
 from datetime import date, timedelta
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_cors import CORS
 from collections import OrderedDict, defaultdict
 from Crypto.Hash import SHA256
@@ -72,6 +70,31 @@ CORS(app)
 def wallet():
     return render_template('index.html')
 
+@app.route('/signup', methods=['POST'])
+def submit():
+    name=request.form['name']
+    kishan_id = request.form['kishan_id']
+    aadhaar_no = request.form['aad_no']
+    email = request.form['email']
+    phone =request.form['phone_no']
+    print(name,kishan_id,aadhaar_no,email,phone)
+    response = {'email': email,
+                'phone': phone}
+    # return redirect(request.referrer)
+    # return render_template('signup2.ejs')
+    return response, 200
+    # return  render_template('signup2.ejs'),200;
+    # return 200
+	# if request.method == "POST":
+	# 	if request.form.get("submit_a"):
+	# 		print("Hello")
+		# elif request.form.get("submit_b"):
+			# do something else
+    #    # getting input with name = fname in HTML form
+    #    id = request.form.get("id_no")
+    #    # getting input with name = lname in HTML form 
+    #    last_name = request.form.get("lname") 
+
 @app.route('/generate/transaction', methods=['POST'])
 def generate_transaction():
     sender_public_key = request.form['sender_public_key']
@@ -116,7 +139,7 @@ def home():
 
 @app.route('/signup')
 def signup():
-    return render_template('signup.html')
+    return render_template('signup2.ejs')
 
 @app.route('/details')
 def details():
