@@ -61,4 +61,6 @@ This simulation runs on local computer therefore you need to start blockchain no
   pip install requests
   pip install flask
   pip install flask_cors
+  pip install Flask-mail
+  pip install twilio
 ```
