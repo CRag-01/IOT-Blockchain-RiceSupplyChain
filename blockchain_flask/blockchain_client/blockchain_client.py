@@ -8,13 +8,14 @@ import urllib.request
 from dotenv.main import load_dotenv
 from twilio.rest import Client
 from datetime import date, timedelta
-from flask import Flask, request, jsonify, render_template, redirect
+from flask import *
+# from flask import Flask, request, jsonify, render_template, redirect
 from flask_cors import CORS
 from collections import OrderedDict, defaultdict
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
-
+from email_otp import *
 
 #twilio configs
 load_dotenv()
@@ -74,7 +75,7 @@ ledger = Ledger()
 # Running a node in Flask
 app = Flask(__name__)
 CORS(app)
-
+app.secret_key = 'EmailAuthenticationByCRAG2021'
 
 # @app.route('/')
 # def index():
@@ -94,13 +95,41 @@ def submit():
                      .services(service) \
                      .verifications \
                      .create(to=phone, channel='sms')
+
+    current_otp = sendEmailVerificationRequest(receiver=email)
+    session['current_otp'] = current_otp
+    session['phone_number'] = phone
     print(verification.status)
+    print(current_otp)
+    # print(verification2.status)
     print(name,kishan_id,aadhaar_no,email,phone)
     response = {'email': email,
                 'phone': phone,
                 'status':verification.status}
     # return redirect(request.referrer)
     # return render_template('signup2.ejs')
+    return response, 200
+
+
+@app.route('/verify', methods=['POST'])
+def verify():
+    phone_otp=request.form['phone_no2']
+    email_otp=request.form['email_id2']
+    current_phone_number = session['phone_number']
+    print(phone_otp,email_otp)
+    verification = client.verify \
+                     .services(service) \
+                     .verification_checks \
+                     .create(to=current_phone_number, code=phone_otp)
+    print(verification.status)
+    current_user_otp = session['current_otp']
+    if int(current_user_otp) == int(email_otp) and verification.status == 'approved':
+        response = {'status_email': 1,
+                    'status_phone': 1}
+                
+    else:
+        response ={'message': 'Invalid OTPs'}
+        return response, 400
     return response, 200
     
 
@@ -146,7 +175,7 @@ def generate_withdrawal():
 def home():
     return render_template('home.html')
 
-@app.route('/signup')
+@app.route('/signupPage')
 def signup():
     return render_template('signup2.ejs')
 

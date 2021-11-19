@@ -45,7 +45,7 @@
                     <span>Phone Number</span>
                     <input type="text" name="phone_no" id="phone_no" />
                 </label>
-                <button type="button" class="submit-xD" value="submit_a">Sign Up</button>
+                <button type="button" class="submit-xD"  id="signup_form_button" value="submit_a">Sign Up</button>
             </form>
         </div>
         <div class="sub-cont">
@@ -75,7 +75,7 @@
                     <span>Email OTP</span>
                     <input type="email" name="email_id2" id="email_id2" />
                 </label>
-                <button type="button" class="submit" name="verify_btn" id="verify_btn">Verify</button>
+                <button type="button" class="submit" id="verify_btn">Verify</button>
             </form> 
             </div>
         </div>
@@ -87,24 +87,36 @@
     <script>
         // var a=1;
         $(function () {
-            $("#submit_form").click(function () {
+            $("#signup_form_button").click(function () {
                 $.ajax({
                     url: "/signup",
                     type: "POST",
                     dataType: 'json',
                     data: $('#submit_form').serialize(),
                     success: function (response) {
-                        // document.getElementById('name').value = response['name'];
-                        // document.getElementById('kishan_id').value = response['kishan_id'];
-                        // document.getElementById('aad_no').value = response['aad_no'];
-                        // document.getElementById('email').value = response['email'];
-                        // document.getElementById('phone_no').value = response['phone_no'];
                         console.log(response)
-                        console.log("Noice")
+                        // console.log("Noice")
                         // $('#basic_modal').modal('show');
                     },
                     error: function (error) {
                         console.log(error);
+                    }
+                });
+                
+            });
+            $("#verify_btn").click(function () {
+                $.ajax({
+                    url: "/verify",
+                    type: "POST",
+                    dataType: 'json',
+                    data: $('#signup_form').serialize(),
+                    success: function (response) {
+                        console.log(response)
+                        // console.log("Noice")
+                        // $('#basic_modal').modal('show');
+                    },
+                    error: function (error,response) {
+                        console.log(response)  ;    console.log(error);
                     }
                 });
                 
