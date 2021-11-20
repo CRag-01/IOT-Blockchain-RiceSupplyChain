@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/style3.css">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300|Montserrat' rel='stylesheet' type='text/css'><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'> -->
     <style>
         body {
             background-image: url("https://wallpaperaccess.com/full/1092758.jpg");
@@ -45,7 +46,7 @@
                     <span>Phone Number</span>
                     <input type="text" name="phone_no" id="phone_no" />
                 </label>
-                <button type="button" class="submit-xD"  id="signup_form_button" value="submit_a">Sign Up</button>
+                <button type="button" class="submit-xD" id="signup_form_button" value="submit_a">Sign Up</button>
             </form>
         </div>
         <div class="sub-cont">
@@ -67,18 +68,40 @@
             <div class="form sign-up">
                 <h2>Enter your OTPs: </h2>
                 <form id="signup_form">
-                <label>
-                    <span>Phone Number OTP</span>
-                    <input type="text" name="phone_no2" id="phone_no2" />
-                </label>
-                <label>
-                    <span>Email OTP</span>
-                    <input type="email" name="email_id2" id="email_id2" />
-                </label>
-                <button type="button" class="submit" id="verify_btn">Verify</button>
-            </form> 
+                    <label>
+                        <span>Phone Number OTP</span>
+                        <input type="text" name="phone_no2" id="phone_no2" />
+                    </label>
+                    <label>
+                        <span>Email OTP</span>
+                        <input type="email" name="email_id2" id="email_id2" />
+                    </label>
+                    <button type="button" class="submit" id="verify_btn">Verify</button>
+                </form>
+                <!-- MODAL IMPLEMENTED FROM HERE ON -->
+                <div class="loader success" style="display:none">
+                    <div class="loader-inner loading">
+                        <!-- style="display:none" > -->
+                        <div class="loading-box">
+                            <div class="circular-loader">
+                            </div>
+                            <div class="error-cross"></div>
+                            <div class="loader-message">OTP Verification Successful!</div>
+                            <div class="loader-result-control">
+                                <button class="btn retry">Retry Again</button>
+                                <button class="btn cancel">Cancel</button>
+                                <button class="btn done">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
+
+
+
+
     </div>
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -102,7 +125,7 @@
                         console.log(error);
                     }
                 });
-                
+
             });
             $("#verify_btn").click(function () {
                 $.ajax({
@@ -112,14 +135,15 @@
                     data: $('#signup_form').serialize(),
                     success: function (response) {
                         console.log(response)
+                        $('.success').fadeIn(500);
                         // console.log("Noice")
                         // $('#basic_modal').modal('show');
                     },
-                    error: function (error,response) {
-                        console.log(response)  ;    console.log(error);
+                    error: function (error, response) {
+                        console.log(response); console.log(error);
                     }
                 });
-                
+
             });
         });
     </script>

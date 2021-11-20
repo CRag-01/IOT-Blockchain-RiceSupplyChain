@@ -17,7 +17,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
 from email_otp import *
 
-#twilio configs
+# twilio configs
 load_dotenv()
 
 account_sid = os.getenv("account_sid")
@@ -26,7 +26,9 @@ service = os.getenv("service")
 
 client = Client(account_sid, auth_token)
 
-#Ledger Configs
+# Ledger Configs
+
+
 class Ledger:
 
     def __init__(self):
@@ -63,7 +65,8 @@ class Transaction:
         })
 
     def sign_transaction(self):
-        private_key = RSA.import_key(binascii.unhexlify(self.sender_private_key))
+        private_key = RSA.import_key(
+            binascii.unhexlify(self.sender_private_key))
         signer = PKCS1_v1_5.new(private_key)
         h = SHA256.new(str(self.to_dict()).encode('utf8'))
         return binascii.hexlify(signer.sign(h)).decode('ascii')
@@ -80,21 +83,24 @@ app.secret_key = 'EmailAuthenticationByCRAG2021'
 # @app.route('/')
 # def index():
 #     return render_template('index.html')
+
+
 @app.route('/wallet')
 def wallet():
     return render_template('index.html')
 
+
 @app.route('/signup', methods=['POST'])
 def submit():
-    name=request.form['name']
+    name = request.form['name']
     kishan_id = request.form['kishan_id']
     aadhaar_no = request.form['aad_no']
     email = request.form['email']
-    phone =request.form['phone_no']
+    phone = request.form['phone_no']
     verification = client.verify \
-                     .services(service) \
-                     .verifications \
-                     .create(to=phone, channel='sms')
+        .services(service) \
+        .verifications \
+        .create(to=phone, channel='sms')
 
     current_otp = sendEmailVerificationRequest(receiver=email)
     session['current_otp'] = current_otp
@@ -102,10 +108,10 @@ def submit():
     print(verification.status)
     print(current_otp)
     # print(verification2.status)
-    print(name,kishan_id,aadhaar_no,email,phone)
+    print(name, kishan_id, aadhaar_no, email, phone)
     response = {'email': email,
                 'phone': phone,
-                'status':verification.status}
+                'status': verification.status}
     # return redirect(request.referrer)
     # return render_template('signup2.ejs')
     return response, 200
@@ -113,25 +119,25 @@ def submit():
 
 @app.route('/verify', methods=['POST'])
 def verify():
-    phone_otp=request.form['phone_no2']
-    email_otp=request.form['email_id2']
+    phone_otp = request.form['phone_no2']
+    email_otp = request.form['email_id2']
     current_phone_number = session['phone_number']
-    print(phone_otp,email_otp)
+    print(phone_otp, email_otp)
     verification = client.verify \
-                     .services(service) \
-                     .verification_checks \
-                     .create(to=current_phone_number, code=phone_otp)
+        .services(service) \
+        .verification_checks \
+        .create(to=current_phone_number, code=phone_otp)
     print(verification.status)
     current_user_otp = session['current_otp']
     if int(current_user_otp) == int(email_otp) and verification.status == 'approved':
         response = {'status_email': 1,
                     'status_phone': 1}
-                
+
     else:
-        response ={'message': 'Invalid OTPs'}
+        response = {'message': 'Invalid OTPs'}
         return response, 400
     return response, 200
-    
+
 
 @app.route('/generate/transaction', methods=['POST'])
 def generate_transaction():
@@ -140,7 +146,8 @@ def generate_transaction():
     recipient_public_key = request.form['recipient_public_key']
     amount = request.form['amount']
 
-    transaction = Transaction(sender_public_key, sender_private_key, recipient_public_key, amount)
+    transaction = Transaction(
+        sender_public_key, sender_private_key, recipient_public_key, amount)
 
     response = {'transaction': transaction.to_dict(),
                 'signature': transaction.sign_transaction()}
@@ -170,18 +177,20 @@ def generate_withdrawal():
         return 'Insufficient amount', 400
 
 
-
 @app.route('/')
 def home():
     return render_template('home.html')
+
 
 @app.route('/signupPage')
 def signup():
     return render_template('signup2.ejs')
 
+
 @app.route('/details')
 def details():
     return render_template('details.html')
+
 
 @app.route('/make/transaction')
 def make_transaction():
@@ -234,7 +243,8 @@ def check_balance():
         eurpln_exchange_rate = exchange['bid']
     amount_in_pln = coin_amount * btceur_exchange_rate * eurpln_exchange_rate
 
-    response = {'coin_amount': coin_amount, 'amount_in_eur': round(amount_in_eur), 'amount_in_pln': round(amount_in_pln)}
+    response = {'coin_amount': coin_amount, 'amount_in_eur': round(
+        amount_in_eur), 'amount_in_pln': round(amount_in_pln)}
     ledger.save_rates(response)
 
     return jsonify(response), 200
@@ -259,7 +269,8 @@ if __name__ == '__main__':
     from argparse import ArgumentParser
 
     parser = ArgumentParser()
-    parser.add_argument('-p', '--port', default=8081, type=int, help="port to listen to")
+    parser.add_argument('-p', '--port', default=8081,
+                        type=int, help="port to listen to")
     args = parser.parse_args()
     port = args.port
 

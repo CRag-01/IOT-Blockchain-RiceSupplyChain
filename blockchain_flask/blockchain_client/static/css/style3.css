@@ -270,3 +270,199 @@
     left: auto;
     right: 5px;
   }
+
+  /* MODAL CSSS FROM HERE ON */
+
+  
+  html, body {
+    height: 100%;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  }
+  .page-content {
+    height: 100%;
+  }
+  
+  /* loader css starts from here */
+  .loader {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #444;
+    display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .loader .loader-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-transition: width .5s, height 1s; /* For Safari 3.1 to 6.0 */
+      transition: width .5s, height 1s;
+  }
+  .loader.success .loader-inner,
+  .loader.error .loader-inner {
+    width: 300px;
+      height: 210px;
+      border-radius: 5px;
+  }
+  
+  .loader .loader-inner .loading-box {
+    text-align: center;
+    width: 100%;
+      padding: 2em;
+  }
+  .loader .loader-inner .loading-box .loader-message {
+    padding: 1em 0;
+    color: black;
+      font-weight: bold;
+  }
+  .loader .loader-inner .loading-box  button {
+      outline: none;
+      border: 1px solid white;
+      padding: .8em 2em;
+      color: white;
+      border-radius: 2px;
+  }
+  
+  .loader .loader-inner .loading-box  button.cancel {
+      background-color: #444;
+  }
+  .loader .loader-inner .loading-box  button.done,
+  .loader .loader-inner .loading-box  button.retry {
+      background-color: #D4AF7A;
+  }
+  .loader .loader-inner .loading-box .circular-loader {
+      border: 3px solid #f3f3f3; /* Light grey */
+      border-top: 3px solid #444; /* Blue */
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+      margin: 0 auto;
+      transition: all .5s ease-out;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .loader .loader-inner .loading-box  .loader-result-control {
+    display: flex;
+    justify-content: center;
+  }
+  .loader.error  .loader-inner .loading-box  .loader-result-control {
+    justify-content:space-between;
+  }
+  .loader.error .loader-inner .loading-box  button.done {
+    display: none;
+  }
+  .loader.error .loader-inner .loading-box  button.cancel,
+  .loader.error .loader-inner .loading-box  button.retry {
+    display: block;
+  }
+  .loader.success .loader-inner .loading-box  button.done {
+    display: block;
+  }
+  .loader.success .loader-inner .loading-box  button.cancel,
+  .loader.success .loader-inner .loading-box  button.retry {
+    display: none;
+  }
+  .loader .loader-inner .loading-box  button.cancel,
+  .loader .loader-inner .loading-box  button.retry,
+  .loader .loader-inner .loading-box  button.done {
+    display: none;
+  }
+  
+  .loader.error .loader-inner .loading-box .circular-loader {
+    border-top: 3px solid #f3f3f3; 
+    animation: none;
+  }
+  
+  .loader .loader-inner .loading-box .circular-loader:before,
+  .loader .loader-inner .loading-box .circular-loader:after {
+    content: '';
+    height: 0px;
+      width: 0px;
+    background-color: white;
+      position: absolute;
+      -webkit-transition: height .5s; /* For Safari 3.1 to 6.0 */
+      transition: height .5s;
+  }
+  
+  /* for error */
+  .loader.error .loader-inner .loading-box .circular-loader:before,
+  .loader.error .loader-inner .loading-box .circular-loader:after,
+  .loader.success .loader-inner .loading-box .circular-loader:before,
+  .loader.success .loader-inner .loading-box .circular-loader:after {
+      height: 30px;
+      width: 3px;
+      border-radius: 3px;
+  }
+  
+  .loader.error .loader-inner .loading-box .circular-loader:before {
+      transform: rotate(50deg);
+  }
+  .loader.error .loader-inner .loading-box .circular-loader:after {
+    transform: rotate(130deg);
+  }
+  
+  /* for success */
+  .loader.success .loader-inner .loading-box .circular-loader {
+    border: 3px solid #17da21; 
+    animation: none;
+  }
+  
+  .loader.success .loader-inner .loading-box .circular-loader:before {
+    transform: rotate(38deg);
+  }
+  .loader.success .loader-inner .loading-box .circular-loader:after {
+    transform: rotate(130deg);
+  }
+  .loader.success .loader-inner .loading-box .circular-loader:before,
+  .loader.success .loader-inner .loading-box .circular-loader:after {
+    background-color: #17da21;
+  }
+  .loader.success .loader-inner .loading-box .circular-loader:after {
+      left: 11px;
+      height: 10px;
+      bottom: 12px
+  }
+  
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+  
+  /* testing control css*/
+  
+  .testing-controls {
+    position: absolute;
+      bottom: 20px;
+    left: 50%;
+  transform: translateX(-50%);
+  }
+  .testing-controls button {
+    outline: none;
+      border: 1px solid white;
+      padding: .8em 1em;
+      color: white;
+      border-radius: 2px;
+  }
+  
+  .testing-controls .error-test  {
+      background-color: #444;
+  }
+  
+  .testing-controls .success-test {
+      background-color: #579a59;
+  }
+  .testing-controls .loading-test {
+    background-color: #f17f7f;
+  }
