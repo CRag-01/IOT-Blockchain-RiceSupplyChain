@@ -78,7 +78,7 @@
                     </label>
                     <button type="button" class="submit" id="verify_btn">Verify</button>
                 </form>
-                <!-- MODAL IMPLEMENTED FROM HERE ON -->
+                <!-- SUCCESS MODAL IMPLEMENTED FROM HERE ON -->
                 <div class="loader success" style="display:none">
                     <div class="loader-inner loading">
                         <!-- style="display:none" > -->
@@ -86,11 +86,27 @@
                             <div class="circular-loader">
                             </div>
                             <div class="error-cross"></div>
-                            <div class="loader-message">OTP Verification Successful!</div>
+                            <div class="loader-message">OTP Verification Successful</div>
                             <div class="loader-result-control">
-                                <button class="btn retry">Retry Again</button>
-                                <button class="btn cancel">Cancel</button>
                                 <button class="btn done">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAILURE MODAL IMPLEMENTED FROM HERE ON -->
+                <div class="loader error" style="display:none">
+                    <div class="loader-inner loading">
+                        <!-- style="display:none" > -->
+                        <div class="loading-box">
+                            <div class="circular-loader">
+                            </div>
+                            <div class="error-cross"></div>
+                            <div class="loader-message"><b>Verification Failed</b></div>
+                            <div class="loader-result-control">
+                                <button class="btn retry"><b>Retry Again</b></button>
+                                <button class="btn cancel"><b>Cancel</b></button>
+                                <button class="btn done" ><b>Done</b></button>
                             </div>
                         </div>
                     </div>
@@ -140,6 +156,7 @@
                         // $('#basic_modal').modal('show');
                     },
                     error: function (error, response) {
+                        $('.error').fadeIn(500);
                         console.log(response); console.log(error);
                     }
                 });
