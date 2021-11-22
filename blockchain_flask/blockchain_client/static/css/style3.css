@@ -332,7 +332,9 @@
 .loader .loader-inner .loading-box  button.cancel {
     background-color: #444;
 }
-.loader .loader-inner .loading-box  button.done,
+.loader .loader-inner .loading-box  button.done{
+    background-color: #3CA73C;
+}
 .loader .loader-inner .loading-box  button.retry {
     background-color: #c7460b;
 }

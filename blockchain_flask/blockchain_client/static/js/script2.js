@@ -16,12 +16,21 @@ var $btnCancel = $loader.find(".cancel");
 
 $(document).ready(function () {
   $btnDone.click(function () {
-    $('.success').fadeOut(500);
+    window.location = '/wallet';
+    // $('.success').fadeOut(500);
+  });
+});
+
+$(document).ready(function () {
+  $btnRetry.click(function () {
+    window.location = '/signupPage';
+    // $('.success').fadeOut(500);
   });
 });
 
 $(document).ready(function () {
   $btnCancel.click(function () {
-    $('.error').fadeOut(500);
+    window.location = '/';
+    // $('.error').fadeOut(500);
   });
 });
