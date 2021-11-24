@@ -87,7 +87,7 @@ app.secret_key = 'EmailAuthenticationByCRAG2021'
 
 @app.route('/wallet')
 def wallet():
-    return render_template('index.html')
+    return render_template('index.html', data=session['temp_dict'])
 
 
 @app.route('/signup', methods=['POST'])
@@ -95,6 +95,7 @@ def submit():
     name = request.form['name']
     kishan_id = request.form['kishan_id']
     aadhaar_no = request.form['aad_no']
+    print(aadhaar_no)
     email = request.form['email']
     phone = request.form['phone_no']
     verification = client.verify \
@@ -103,6 +104,18 @@ def submit():
         .create(to=phone, channel='sms')
 
     current_otp = sendEmailVerificationRequest(receiver=email)
+    session['temp_dict']={
+        'name': name,
+        'kishan_id': kishan_id,
+        'aadhaar_no': aadhaar_no,
+        'email': email,
+        'phone': phone,
+    }
+    #     'id': session['kishan_id'],
+    #     'aadhaar_no': session['aad_no'],
+    #     'email': session['email'],
+    #     'phone': session['phone_no'],
+    # }
     session['current_otp'] = current_otp
     session['phone_number'] = phone
     print(verification.status)
@@ -162,7 +175,6 @@ def generate_withdrawal():
     your_private_key = request.form['your_private_key']
     amount = request.form['amount_withdraw']
     currency = request.form['currency_withdraw']
-
     response = {'your_public_key': your_public_key,
                 'your_private_key': your_private_key,
                 'amount': amount,
@@ -256,6 +268,8 @@ def new_wallet():
     private_key = RSA.generate(1024, random_gen)
     public_key = private_key.publickey()
 
+    session['public_key']=binascii.hexlify(public_key.export_key(format('DER'))).decode('ascii')
+
     response = {
         'private_key': binascii.hexlify(private_key.export_key(format('DER'))).decode('ascii'),
         'public_key': binascii.hexlify(public_key.export_key(format('DER'))).decode('ascii')
@@ -264,6 +278,12 @@ def new_wallet():
     ledger.reward_new_wallet(response['public_key'])
     return jsonify(response), 200
 
+@app.route('/addToNode' ,  methods=['POST'])
+def addToNode():
+    response={
+        session['public_key']:session['temp_dict']
+    }
+    return response, 200
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
