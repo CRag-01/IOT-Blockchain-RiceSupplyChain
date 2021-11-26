@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain - Node Network</title>
+
+    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/vendor/DataTables/css/datatables.min.css">
+    <link rel="stylesheet" href="/static/vendor/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a href="#" class="navbar-brand"> Supply Chain Authorisation Module - Node Network Side</a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a href="/configure" class="nav-link">Configure</a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a href="/view/users" class="nav-link">View Users</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <br>
+        <br>
+        <form id="input_form">
+
+            <div class="row">
+                <label class="col-sm-2"><b>Enter the Public Key:</b></label>
+                <div class="col-sm-10">
+                    <textarea id="public_key" name="public_key" rows="6" cols="100"></textarea><br><br>
+                </div>
+            </div>
+            <br>
+        </form>
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="card-body">
+                    <input type="button" class="btn btn-primary btn-lg" id="fetch_btn" value="Fetch User Details">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal modal-alert" id="details_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+        aria-hidden="true">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <div class="modal-title col-md-10"><b>DETAILS FOR GIVEN PUBLIC KEY.</b></div>
+                    <button type="button" class="close col-md-2" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="fetched_details_form">
+
+                        <div class="row">
+                            <label class="col-sm-12">Name:</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="name" id="name" rows="2" class="form-control" readonly>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-12">Identity:</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="id_no" id="id_no" rows="2" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-12">Aadhar No.:</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="aadhar" id="aadhar" rows="2" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-12">Phone:</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="phone" id="phone" rows="2" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-12">Email:</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="email" id="email" rows="2" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="confirm_transaction" class="btn btn-success"
+                        data-dismiss="modal">OK</button>
+                </div>
+            </div>
+
+
+            <script> src = "/static/vendor/jquery/jquery.min.js"</script>
+            <script> src = "/static/vendor/bootstrap/js/bootstrap.bundle.min.js"</script>
+            <script> src = "/static/vendor/DataTables/js/datatables.min.js"</script>
+            <script> src = "/static/vendor/DataTables/js/ellipsis.js"</script>
+
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+            <script src="//cdn.datatables.net/plug-ins/1.11.3/dataRender/ellipsis.js"></script>
+            <script type="text/javascript"
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+            <script>
+                $(function () {
+
+                    $('#fetch_btn').click(function () {
+                        $.ajax({
+                            url: '/fetch/userDetails',
+                            type: 'POST',
+                            dataType: 'json',
+                            // header: { 'Access-Control-Allow-Origin': '*' },
+                            data: $('#input_form').serialize(),
+
+                            success: function (response) {
+                                console.log(response);
+                                document.getElementById('name').value = response['name'];
+                                document.getElementById('id_no').value = response['id'];
+                                document.getElementById('aadhar').value = response['aadhar'];
+                                document.getElementById('phone').value = response['phone'];
+                                document.getElementById('email').value = response['email'];
+
+                                $('#details_modal').modal('show');
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
+
+                });
+            </script>
+</body>
+
+</html>

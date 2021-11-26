@@ -70,12 +70,12 @@
       <div class="row">
         <label class="col-sm-2">Name:</label>
         <div class="col-sm-3">
-          <textarea id="name" rows="1" class="form-control" readonly value="">{{data.name}}</textarea>
+          <textarea id="name" name="name" rows="1" class="form-control" readonly value="">{{data.name}}</textarea>
           <br><br>
         </div>
         <label class="col-sm-2">Identity Number:</label>
         <div class="col-sm-3">
-          <textarea id="id" rows="1" class="form-control" readonly value="">{{data.kishan_id}}</textarea>
+          <textarea id="id" name="id" rows="1" class="form-control" readonly value="">{{data.kishan_id}}</textarea>
           <br><br>
         </div>
       </div>
@@ -85,13 +85,13 @@
       <div class="row">
         <label class="col-sm-2">Aadhaar Number:</label>
         <div class="col-sm-3">
-          <textarea id="aadhaar" rows="1" class="form-control" readonly value="">{{data.aadhaar_no}}</textarea>
+          <textarea id="aadhaar" name="aadhaar" rows="1" class="form-control" readonly value="">{{data.aadhaar_no}}</textarea>
           <br><br>
         </div>
 
         <label class="col-sm-2">Email :</label>
         <div class="col-sm-3">
-          <textarea id="email" rows="1" class="form-control" readonly value="">{{data.email}}</textarea>
+          <textarea id="email" name="email" rows="1" class="form-control" readonly value="">{{data.email}}</textarea>
           <br><br>
         </div>
       </div>
@@ -101,7 +101,7 @@
       <div class="row">
         <label class="col-sm-2">Mobile :</label>
         <div class="col-sm-2">
-          <textarea id="phone2" rows="1" class="form-control" readonly value="">{{data.phone}}</textarea>
+          <textarea id="phone2" name="phone2" rows="1" class="form-control" readonly value="">{{data.phone}}</textarea>
           <br>
           <br>
         </div>
@@ -113,7 +113,7 @@
         <div class="row">
           <label class="col-sm-2">Public Key:</label>
           <div class="col-sm-10">
-            <textarea id="public_key" rows="5" class="form-control" readonly></textarea>
+            <textarea id="public_key" name="public_key" rows="5" class="form-control" readonly></textarea>
           </div>
         </div>
 
@@ -122,7 +122,7 @@
         <div class="row">
           <label class="col-sm-2">Private Key:</label>
           <div class="col-sm-10">
-            <textarea id="private_key" rows="5" class="form-control" readonly></textarea>
+            <textarea id="private_key" name="private_key" rows="5" class="form-control" readonly></textarea>
           </div>
         </div>
     </form>
@@ -169,10 +169,12 @@
 
         <div class="modal-footer">
           <p>
-            <!-- <a href='/make/transaction'> -->
+            <!-- <form style="display: inline" action="/make/transaction" method="get">
+              
               <button type="button" id="modal_ok_btn" class="btn btn-success"
-                data-dismiss="modal">OK</button>
-            <!-- </a> -->
+                data-dismiss="modal">Proceed to Transaction!</button>
+            </form> -->
+            <button type="button" class="btn btn-success" onclick="location.href='/make/transaction'">Proceed to Transaction!</button>
           </p>
         </div>
 
@@ -242,18 +244,20 @@
         });
       });
 
-      //ok button inside the modal
-      $('#modal_ok_btn').click(function () {
-        $.ajax({
-          url: '/make/transaction',
-          success: function (resposne) {
-            console.log('Navingation OK.')
-          },
-          error: function (error) {
-            console.log(error);
-          }
-        });
-      });
+      // ok button inside the modal
+      // $('#modal_ok_btn').click(function () {
+      //   $.ajax({
+      //     url: '/make/transaction',
+      //     success: function (resposne) {
+      //       console.log('Navingation OK.')
+      //     },
+      //     error: function (error) {
+      //       console.log(error);
+      //     }
+      //   });
+      // });
+
+
     });
 
   </script>
