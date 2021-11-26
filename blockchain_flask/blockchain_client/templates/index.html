@@ -18,55 +18,33 @@
 
 <body>
 
-  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a href="#" class="navbar-brand">Blockchain User Frontend (Python)</a>
-
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a href="/" class="nav-link">Wallet Generator</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/make/transaction" class="nav-link">Make Transaction</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/view/transactions" class="nav-link">View Transactions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/view/balance" class="nav-link">Balance & ATM</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Rice Chain</a>
+      <a class="navbar-brand" href="#"><b>Supply Chain Authorisation Module</b> - Client Side</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/signup">Sign Up</a>
-          </li>
+          </li> -->
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/wallet">Wallet</a>
+            <a class="nav-link active" aria-current="page" href="/wallet">Key Generator</a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/make/transaction">Make Transaction</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/view/transactions">View Transaction</a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link" href="/view/balance">Balance & ATM</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="/details">Details</a>
           </li>
@@ -79,165 +57,206 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="card-body">
-          <h4 class="card-title">Wallet Generator</h4>
+          <h4 class="card-title">Key Generator</h4>
           <p class="card-text">Click on the button below to generate your blockchain wallet</p>
-          <input type="button" id="generate_button" class="btn btn-primary btn-lg" value="Generate Wallet">
+          <input type="button" onclick="style.display = 'none'" id="generate_button" class="btn btn-primary btn-lg" value="Generate Keys">
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
-
-    <div class="row">
-      <label class="col-sm-2">Name:</label>
-      <div class="col-sm-3">
-        <!-- <input type="text" name="name" id="name" value="{{data.name}}" readonly> -->
-        <textarea id="name" rows="1" class="form-control" readonly value="">{{data.name}}</textarea>
-        <br><br>
-      </div>
-      <label class="col-sm-2">Identity Number:</label>
-      <div class="col-sm-3">
-        <!-- <input type="text" name="id" id="id" value="{{data.kishan_id}}" readonly> -->
-        <textarea id="id" rows="1" class="form-control" readonly value="">{{data.kishan_id}}</textarea>
-        <br><br>
-      </div>
-
-    </div>
-
-    <!-- <div class="row">
-      <label class="col-sm-2">Identity Number:</label>
-      <div class="col-sm-3">
-        <textarea id="id" rows="1" class="form-control" readonly value="">{{data.kishan_id}}</textarea>
-        <br><br>
-      </div>
-    </div> -->
-
-    <br>
-
-    <div class="row">
-      <label class="col-sm-2">Aadhaar Number:</label>
-      <div class="col-sm-3">
-        <!-- <input type="text" name="aadhaar" id="aadhaar" value="{{data.aadhaar_no}}" readonly> -->
-        <textarea id="aadhaar" rows="1" class="form-control" readonly value="">{{data.aadhaar_no}}</textarea>
-        <br><br>
-      </div>
-
-      <label class="col-sm-2">Email :</label>
-      <div class="col-sm-3">
-        <!-- <input type="text" name="email" id="email" value="{{data.email}}" readonly> -->
-        <textarea id="email" rows="1" class="form-control" readonly value="">{{data.email}}</textarea>
-        <br><br>
-      </div>
-    </div>
-
-
-
-    <!-- <div class="row">
-      <label class="col-sm-2">Email :</label>
-      <div class="col-sm-3">
-        <textarea id="email" rows="1" class="form-control" readonly value="">{{data.email}}</textarea>
-        <br><br>
-      </div>
-    </div> -->
-
-    <br>
-
-    <div class="row">
-      <label class="col-sm-2">Mobile :</label>
-      <div class="col-sm-2">
-        <!-- <input type="text" name="phone" id="phone" value="{{data.phone}}" readonly> -->
-        <textarea id="phone2" rows="1" class="form-control" readonly value="">{{data.phone}}</textarea>
-        <br>
-        <br>
-      </div>
-      <div class="col-sm-3">
-        <div class="card-body">
-          <input type="button" id="add_button" class="btn btn-primary btn-lg" value="Add to Network">
-        </div>
-      </div>
-    </div>
-
-    <br>
-
-
-    <div class="container">
+    <form id="profile_form">
       <div class="row">
-        <label class="col-sm-2">Public Key:</label>
-        <div class="col-sm-10">
-          <textarea id="public_key" rows="5" class="form-control" readonly></textarea>
+        <label class="col-sm-2">Name:</label>
+        <div class="col-sm-3">
+          <textarea id="name" rows="1" class="form-control" readonly value="">{{data.name}}</textarea>
+          <br><br>
+        </div>
+        <label class="col-sm-2">Identity Number:</label>
+        <div class="col-sm-3">
+          <textarea id="id" rows="1" class="form-control" readonly value="">{{data.kishan_id}}</textarea>
+          <br><br>
         </div>
       </div>
 
       <br>
 
       <div class="row">
-        <label class="col-sm-2">Private Key:</label>
-        <div class="col-sm-10">
-          <textarea id="private_key" rows="5" class="form-control" readonly></textarea>
+        <label class="col-sm-2">Aadhaar Number:</label>
+        <div class="col-sm-3">
+          <textarea id="aadhaar" rows="1" class="form-control" readonly value="">{{data.aadhaar_no}}</textarea>
+          <br><br>
+        </div>
+
+        <label class="col-sm-2">Email :</label>
+        <div class="col-sm-3">
+          <textarea id="email" rows="1" class="form-control" readonly value="">{{data.email}}</textarea>
+          <br><br>
         </div>
       </div>
 
       <br>
 
-      <div class="row" id="warning" style="display:none">
-        <div class="col-sm-12">
-          <div class="alert alert-danger" role="alert">
-            IMPORTANT
-            <ul>
-              <li>Save you private and public keys. These keys cannot be recovered!</li>
-              <li>Don't share your private key with anyone!</li>
-            </ul>
+      <div class="row">
+        <label class="col-sm-2">Mobile :</label>
+        <div class="col-sm-2">
+          <textarea id="phone2" rows="1" class="form-control" readonly value="">{{data.phone}}</textarea>
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="container">
+        <div class="row">
+          <label class="col-sm-2">Public Key:</label>
+          <div class="col-sm-10">
+            <textarea id="public_key" rows="5" class="form-control" readonly></textarea>
           </div>
         </div>
-      </div>
 
+        <br>
+
+        <div class="row">
+          <label class="col-sm-2">Private Key:</label>
+          <div class="col-sm-10">
+            <textarea id="private_key" rows="5" class="form-control" readonly></textarea>
+          </div>
+        </div>
+    </form>
+    <br>
+
+    <div class="row" id="warning" style="display:none">
+      <div class="col-sm-12">
+        <div class="alert alert-danger" role="alert">
+          IMPORTANT
+          <ul>
+            <li>Save you private and public keys. These keys cannot be recovered!</li>
+            <li>Don't share your private key with anyone!</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="card-body">
+          <input type="button" class="btn btn-primary btn-lg" id="add_btn" value="Proceed for Transactions">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- User Add Success Modal -->
+  <div class="modal modal-alert" id="useradd_success_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">User Add Successful!</h4>
+            <p>User successfully added to Blockchain and will be reflected in BCT Network.</p>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <p>
+            <!-- <a href='/make/transaction'> -->
+              <button type="button" id="modal_ok_btn" class="btn btn-success"
+                data-dismiss="modal">OK</button>
+            <!-- </a> -->
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 
 
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/vendor/DataTables/js/datatables.min.js"></script>
-    <script src="/static/vendor/DataTables/js/ellipsis.js"></script>
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/vendor/DataTables/js/datatables.min.js"></script>
+  <script src="/static/vendor/DataTables/js/ellipsis.js"></script>
 
-    <script>
-      $(function () {
-        $('#generate_button').click(function () {
+  <script>
+    $(function () {
 
-          $.ajax({
-            url: '/wallet/new',
-            type: 'GET',
-            success: function (response) {
-              document.getElementById("public_key").innerHTML = response['public_key'];
-              document.getElementById("private_key").innerHTML = response['private_key'];
-              document.getElementById("warning").style.display = "block";
-            },
-            error: function (error) {
-              console.log(error);
-            }
-          });
-        });
-
-
-        $("#add_button").click(function () {
-          $.ajax({
-            url: "/addToNode",
-            type: "POST",
-            // dataType: 'json',
-            // data: $('#submit_form').serialize(),
-            success: function (response) {
-              console.log(response)
-            },
-            error: function (error) {
-              console.log(error);
-            }
-          });
+      //generate the public and private keys
+      $('#generate_button').click(function () {
+        $.ajax({
+          url: '/wallet/new',
+          type: 'GET',
+          success: function (response) {
+            document.getElementById("public_key").innerHTML = response['public_key'];
+            document.getElementById("private_key").innerHTML = response['private_key'];
+            document.getElementById("warning").style.display = "block";
+          },
+          error: function (error) {
+            console.log(error);
+          }
         });
       });
 
-    </script>
+      //add to the network button
+      // $("#add_button").click(function () {
+      //   $.ajax({
+      //     url: "/addToNode",
+      //     type: "POST",
+      //     // dataType: 'json',
+      //     // data: $('#submit_form').serialize(),
+      //     success: function (response) {
+      //       console.log(response)
+      //     },
+      //     error: function (error) {
+      //       console.log(error);
+      //     }
+      //   });
+      // });
+
+      //button to add to the network
+      $('#add_btn').click(function () {
+        $.ajax({
+          url: 'http://127.0.0.1:5001/users/new',
+          type: 'POST',
+          dataType: 'json',
+          header: { 'Access-Control-Allow-Origin': '*' },
+          data: $('#profile_form').serialize(),
+
+          success: function (response) {
+            $('#useradd_success_modal').modal('show');
+            console.log('POST to Node Network - Success!');
+            console.log(response);
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+      });
+
+      //ok button inside the modal
+      $('#modal_ok_btn').click(function () {
+        $.ajax({
+          url: '/make/transaction',
+          success: function (resposne) {
+            console.log('Navingation OK.')
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+      });
+    });
+
+  </script>
 
 </body>
 

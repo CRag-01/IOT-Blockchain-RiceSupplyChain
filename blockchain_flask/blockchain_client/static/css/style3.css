@@ -82,7 +82,7 @@
     top: 0;
     width: 900px;
     height: 100%;
-    background-image: url("https://www.betterteam.com/images/farmer-job-description-4088x2725-20201130.jpeg?crop=1:1,smart&width=1200&dpr=2");
+    /* background-image: url("https://www.betterteam.com/images/farmer-job-description-4088x2725-20201130.jpeg?crop=1:1,smart&width=1200&dpr=2"); */
     background-size: cover;
     transition: transform 1.2s ease-in-out;
   }

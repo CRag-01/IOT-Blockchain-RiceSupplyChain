@@ -1,377 +1,433 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <title>Details</title>
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
-        <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
-        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            * {
-                box-sizing: border-box;
-                margin: 0;
-            }
-            body {
-                font-family: 'Lato', sans-serif;
-            }
-            .text-center {
-                text-align: center;
-            }
-            .teams-wrapper {
-                background: black;
-                padding: 80px 30px 100px 30px;
-                color: #fff;
-            }
-            .teams-wrapper div {
-                width: 90%;
-                margin: auto;
-            }
-            .teams-wrapper h1 {
-                font-size: 45px;
-                padding-bottom: 50px;
-            }
-            .teams-wrapper p {
-                font-size: 24px;
-            }
-            .teamdetails-container {
-                padding: 80px 0;
-            }
-            .team-background {
-                width: 100%;
-                height: 130px;
-                background: black;
-            }
-            .flex-container {
-                display: flex;
-                flex-wrap: wrap;
-                width: 100%;
-            }
-            .flex-space{
-                padding: 50px 80px;
-            }
-            .flex-item {
-                width: 33.33%;
-            }
-            .flex-item .team-div {
-                border: 1px solid black;
-                margin: 0 40px;
-                padding: 0 0 30px 0;
-            }
-            .team-picture {
-                text-align: center;
-                margin-top: -55px;
-            }
-            .team-picture img {
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-            }
-            .team-details {
-                padding: 0 20px;
-                text-align: center;
-            }
-            .team-div h4 {
-                font-size: 27px;
-                color: black;
-            }
-            .team-div h6 {
-                font-size: 17px;
-                font-weight: none;
-                color: #707070;
-                padding-bottom: 7px;
-            }
-            .team-div p {
-                font-size: 19px;
-                color: #707070;
-                padding-bottom: 10px;
-            }
-            .socials-container {
-                display: inline-block;
-            }
-            .social-item {
-                width: auto;
-                float: left;
-                margin: 0.5em;
-            }
-            .flex-item a {
-                text-decoration: none;
-            }
-            .img-responsive {
-                max-width: 100%;
-                height: auto;
-            }
-            .mt-50 {
-                margin-top: 50px;
-            }
-          
-          /*style for the heaer*/
-          header{
-            height: 65px;
-          }
-          .header-left{
+
+<head>
+    <title>Details</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .teams-wrapper {
+            background: black;
+            padding: 80px 30px 100px 30px;
+            color: #fff;
+        }
+
+        .teams-wrapper div {
+            width: 90%;
+            margin: auto;
+        }
+
+        .teams-wrapper h1 {
+            font-size: 45px;
+            padding-bottom: 50px;
+        }
+
+        .teams-wrapper p {
+            font-size: 24px;
+        }
+
+        .teamdetails-container {
+            padding: 80px 0;
+        }
+
+        .team-background {
+            width: 100%;
+            height: 130px;
+            background: black;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .flex-space {
+            padding: 50px 80px;
+        }
+
+        .flex-item {
+            width: 33.33%;
+        }
+
+        .flex-item .team-div {
+            border: 1px solid black;
+            margin: 0 40px;
+            padding: 0 0 30px 0;
+        }
+
+        .team-picture {
+            text-align: center;
+            margin-top: -55px;
+        }
+
+        .team-picture img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .team-details {
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .team-div h4 {
+            font-size: 27px;
+            color: black;
+        }
+
+        .team-div h6 {
+            font-size: 17px;
+            font-weight: none;
+            color: #707070;
+            padding-bottom: 7px;
+        }
+
+        .team-div p {
+            font-size: 19px;
+            color: #707070;
+            padding-bottom: 10px;
+        }
+
+        .socials-container {
+            display: inline-block;
+        }
+
+        .social-item {
+            width: auto;
             float: left;
-          } 
-          .header-right {
+            margin: 0.5em;
+        }
+
+        .flex-item a {
+            text-decoration: none;
+        }
+
+        .img-responsive {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .mt-50 {
+            margin-top: 50px;
+        }
+
+        /*style for the heaer*/
+        header {
+            height: 65px;
+        }
+
+        .header-left {
+            float: left;
+        }
+
+        .header-right {
             text-align: center;
             margin-top: 10px;
             margin-right: 12px;
             float: right;
-          }
-          a{ text-decoration: none}
-          .header-right a{
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .header-right a {
             text-decoration: none;
             color: purple;
             margin-right: 15px;
-          
-          }
-          .header-container{
-            background-color:  white;
-          }
-         .header-right li{
+
+        }
+
+        .header-container {
+            background-color: white;
+        }
+
+        .header-right li {
             list-style-type: none;
             margin-top: 15px;
             margin-right: 15px;
             display: inline-block;
-          }
-          
-          footer{
-          
+        }
+
+        footer {
+
             height: 130px;
             width: 100%;
             background-color: black;
-            
-          }
-          .footer-partners li{
+
+        }
+
+        .footer-partners li {
             list-style-type: none;
-            
-          }
-          .footer-partners a{
+
+        }
+
+        .footer-partners a {
             color: white;
-          }
-          
-            /* for smaller screens */
-            @media only screen and (max-width: 700px) {
-                .flex-container {
-                    display: block;
-                    padding: 0;
-                }
-                .flex-item{
-                    width: auto;
-                    margin-bottom: 20px;
-                }
-                .teams-wrapper p {
-                    font-size: 21px;
-                }
-              .header-right li {
-              margin-right: 5px;
+        }
+
+        /* for smaller screens */
+        @media only screen and (max-width: 700px) {
+            .flex-container {
+                display: block;
+                padding: 0;
+            }
+
+            .flex-item {
+                width: auto;
+                margin-bottom: 20px;
+            }
+
+            .teams-wrapper p {
+                font-size: 21px;
+            }
+
+            .header-right li {
+                margin-right: 5px;
                 margin-top: 5px;
-              }
             }
-            @media only screen and (min-width: 701px) and (max-width: 900px) {
-                .flex-container {
-                   padding: 0;
-                }
+        }
+
+        @media only screen and (min-width: 701px) and (max-width: 900px) {
+            .flex-container {
+                padding: 0;
             }
-        </style>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <!-- <header> -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Rice Chain</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
-                  <ul class="navbar-nav">
-                    <li class="nav-item">
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- <header> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><b>Supply Chain Authorisation Module</b> - Client Side</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
                       <a class="nav-link" aria-current="page" href="/signup">Sign Up</a>
                     </li>
             
                             <li class="nav-item">
                       <a class="nav-link" aria-current="page" href="/wallet">Wallet</a>
-                    </li>
-            
+                    </li> -->
+
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/make/transaction">Make Transaction</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/view/transactions">View Transaction</a>
+                        <a class="nav-link" aria-current="page" href="/make/transaction">Make Transaction</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/view/transactions">View Transaction</a>
+                    </li>
+                    <!-- <li class="nav-item">
                     <a class="nav-link" href="/view/balance">Balance & ATM</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
-                    <a class="nav-link active" href="/details">Details</a>
+                        <a class="nav-link active" href="/details">Details</a>
                     </li>
-                  </ul>
-                  </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- </header> -->
+    <main>
+        <div class="teams-wrapper">
+            <div>
+                <h1 class="text-center">OUR TEAM</h1>
+                <p>Our team is a perfect blend of creative front-end UI UX developers and a resourceful back-end. This
+                    gives us the power to integrate our crazy ideas through code and make use of the maximum tech stack
+                    possible.</p>
+            </div>
+        </div>
+        <div class="teamdetails-container">
+            <div class="flex-container flex-space">
+                <div class="flex-item">
+                    <div class="team-div">
+                        <div class="team-background"></div>
+                        <div class="team-picture">
+                            <img src="images/schoolchild.jpeg" class="img-responsive" alt="schoolchild">
+                        </div>
+                        <div class="team-details">
+                            <h4>Surname Firstname</h4>
+                            <h6>Front end developer</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            </p>
+                            <div class="socials-container">
+                                <div class="social-item">
+                                    <a href=""><i class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href=""><i class="fa fa-twitter"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href=""><i class="fa fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </nav>
-        <!-- </header> -->
-        <main>
-            <div class="teams-wrapper">
-                <div>
-                    <h1 class="text-center">OUR TEAM</h1>
-                    <p>Our team is a perfect blend of creative front-end UI UX developers and a resourceful back-end. This gives us the power to integrate our crazy ideas through code and make use of the maximum tech stack possible.</p>
+                <div class="flex-item">
+                    <div class="team-div">
+                        <div class="team-background"></div>
+                        <div class="team-picture">
+                            <img src="images/schoolchild-book.jpeg" class="img-responsive" alt="schoolchild">
+                        </div>
+                        <div class="team-details">
+                            <h4>Surname Firstname</h4>
+                            <h6>Front end developer</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            </p>
+                            <div class="socials-container">
+                                <div class="social-item">
+                                    <a href=""><i class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href=""><i class="fa fa-twitter"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href=""><i class="fa fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <div class="team-div">
+                        <div class="team-background"></div>
+                        <div class="team-picture">
+                            <img src="images/schoolchild-bag.jpeg" class="img-responsive" alt="schoolchild">
+                        </div>
+                        <div class="team-details">
+                            <h4>Chandru S</h4>
+                            <h6>Blockchain Developer</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            </p>
+                            <div class="socials-container">
+                                <div class="social-item">
+                                    <a href="https://www.linkedin.com/in/chandru-s-36240294/"><i
+                                            class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href="https://twitter.com/ChandruSatchi"><i class="fa fa-twitter"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href="https://github.com/CRag-01"><i class="fa fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item mt-50">
+                    <div class="team-div">
+                        <div class="team-background"></div>
+                        <div class="team-picture">
+                            <img src="images/schoolchild.jpeg" class="img-responsive" alt="schoolchild">
+                        </div>
+                        <div class="team-details">
+                            <h4>Navin Thomsy</h4>
+                            <h6>Front end developer</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            </p>
+                            <div class="socials-container">
+                                <div class="social-item">
+                                    <a href="https://www.linkedin.com/in/navin-thomsy-34942a192/"><i
+                                            class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href="https://twitter.com/navinthomsy"><i class="fa fa-twitter"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href="https://github.com/NavinThomsy"><i class="fa fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item mt-50">
+                    <div class="team-div">
+                        <div class="team-background"></div>
+                        <div class="team-picture">
+                            <img src="images/schoolchild-book.jpeg" class="img-responsive" alt="schoolchild">
+                        </div>
+                        <div class="team-details">
+                            <h4>Sharath Srivatsan</h4>
+                            <h6>Front end developer</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            </p>
+                            <div class="socials-container">
+                                <div class="social-item">
+                                    <a href="https://www.linkedin.com/in/sharathsrivatsan/"><i
+                                            class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href="https://twitter.com/sharathsriv"><i class="fa fa-twitter"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href="https://github.com/sharathsriv"><i class="fa fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item mt-50">
+                    <div class="team-div">
+                        <div class="team-background"></div>
+                        <div class="team-picture">
+                            <img src="images/schoolchild-bag.jpeg" class="img-responsive" alt="schoolchild">
+                        </div>
+                        <div class="team-details">
+                            <h4>Ayan Sadhukhan</h4>
+                            <h6>Front end developer</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            </p>
+                            <div class="socials-container">
+                                <div class="social-item">
+                                    <a href="https://www.linkedin.com/in/ayan-sadhukhan-413471167/"><i
+                                            class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href="https://twitter.com/Caltrop29493061"><i class="fa fa-twitter"></i></a>
+                                </div>
+                                <div class="social-item">
+                                    <a href="https://github.com/ayan2809"><i class="fa fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="teamdetails-container">
-                <div class="flex-container flex-space">
-                    <div class="flex-item">
-                        <div class="team-div">
-                            <div class="team-background"></div>
-                            <div class="team-picture">
-                                <img src="images/schoolchild.jpeg" class="img-responsive" alt="schoolchild">
-                            </div>
-                            <div class="team-details">
-                                <h4>Surname Firstname</h4>
-                                <h6>Front end developer</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                <div class="socials-container">
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-github"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-item">
-                        <div class="team-div">
-                            <div class="team-background"></div>
-                            <div class="team-picture">
-                                <img src="images/schoolchild-book.jpeg" class="img-responsive" alt="schoolchild">
-                            </div>
-                            <div class="team-details">
-                                <h4>Surname Firstname</h4>
-                                <h6>Front end developer</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                <div class="socials-container">
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-github"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-item">
-                        <div class="team-div">
-                            <div class="team-background"></div>
-                            <div class="team-picture">
-                                <img src="images/schoolchild-bag.jpeg" class="img-responsive" alt="schoolchild">
-                            </div>
-                            <div class="team-details">
-                                <h4>Chandru S</h4>
-                                <h6>Blockchain Developer</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                <div class="socials-container">
-                                    <div class="social-item">
-                                        <a href="https://www.linkedin.com/in/chandru-s-36240294/"><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href="https://github.com/CRag-01"><i class="fa fa-github"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-item mt-50">
-                        <div class="team-div">
-                            <div class="team-background"></div>
-                            <div class="team-picture">
-                                <img src="images/schoolchild.jpeg" class="img-responsive" alt="schoolchild">
-                            </div>
-                            <div class="team-details">
-                                <h4>Navin Thomsy</h4>
-                                <h6>Front end developer</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                <div class="socials-container">
-                                    <div class="social-item">
-                                        <a href="https://www.linkedin.com/in/navin-thomsy-34942a192/"><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href="https://github.com/NavinThomsy"><i class="fa fa-github"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-item mt-50">
-                        <div class="team-div">
-                            <div class="team-background"></div>
-                            <div class="team-picture">
-                                <img src="images/schoolchild-book.jpeg" class="img-responsive" alt="schoolchild">
-                            </div>
-                            <div class="team-details">
-                                <h4>Sharath Srivatsan</h4>
-                                <h6>Front end developer</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                <div class="socials-container">
-                                    <div class="social-item">
-                                        <a href="https://www.linkedin.com/in/sharathsrivatsan/"><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href="https://github.com/sharathsriv"><i class="fa fa-github"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-item mt-50">
-                        <div class="team-div">
-                            <div class="team-background"></div>
-                            <div class="team-picture">
-                                <img src="images/schoolchild-bag.jpeg" class="img-responsive" alt="schoolchild">
-                            </div>
-                            <div class="team-details">
-                                <h4>Ayan Sadhukhan</h4>
-                                <h6>Front end developer</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                <div class="socials-container">
-                                    <div class="social-item">
-                                        <a href="https://www.linkedin.com/in/ayan-sadhukhan-413471167/"><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                    </div>
-                                    <div class="social-item">
-                                        <a href="https://github.com/ayan2809"><i class="fa fa-github"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-      
-    </body>
+        </div>
+    </main>
+
+</body>
+
 </html>
-  
-  
-  

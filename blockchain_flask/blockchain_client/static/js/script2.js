@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $btnRetry.click(function () {
-    window.location = '/signupPage';
+    window.location = '/#';
     // $('.success').fadeOut(500);
   });
 });

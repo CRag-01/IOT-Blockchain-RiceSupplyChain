@@ -194,9 +194,21 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/signupPage')
-def signup():
-    return render_template('signup2.ejs')
+@app.route('/signupPage_Producer')
+def signup_producer():
+    return render_template('signupProducer.html')
+
+@app.route('/signupPage_Processor')
+def signup_processor():
+    return render_template('signupProcessor.html')
+
+@app.route('/signupPage_Retailer')
+def signup_retailer():
+    return render_template('signupRetailer.html')
+
+@app.route('/signupPage_Consumer')
+def signup_consumer():
+    return render_template('signupConsumer.html')
 
 
 @app.route('/details')
@@ -278,12 +290,12 @@ def new_wallet():
     ledger.reward_new_wallet(response['public_key'])
     return jsonify(response), 200
 
-@app.route('/addToNode' ,  methods=['POST'])
-def addToNode():
-    response={
-        session['public_key']:session['temp_dict']
-    }
-    return response, 200
+# @app.route('/addToNode' ,  methods=['POST'])
+# def addToNode():
+#     response={
+#         session['public_key']:session['temp_dict']
+#     }
+#     return response, 200
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
